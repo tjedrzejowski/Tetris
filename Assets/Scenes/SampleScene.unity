@@ -1688,7 +1688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c0e0d510e37460e84ee91b3c603075f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentProvider: {fileID: 0}
+  _componentProvider: {fileID: 11400000, guid: 853a0512077b4d77b8e70e808addac7f, type: 2}
 --- !u!850595691 &1580320723
 LightingSettings:
   m_ObjectHideFlags: 0

@@ -17,18 +17,14 @@ public class GameController : MonoBehaviour
     {
         //TODO: gameplay elements:
         SetFallTimer();
-        //uIController.OnRestartClick += OnRestratClick;
         gameLoopManager.onLineCompleted += OnLineCompleated;
         gameLoopManager.onLastRowReached += OnLastRowReached;
         uIController.SetGameloopActiveFlag(false); 
         
-        // uIController.onStartClick += OnStartClick;
     }
 
     private void OnDisable()
     {
-        // uIController.onStartClick -= OnStartClick;
-        //uIController.OnRestartClick -= OnRestratClick;
         gameLoopManager.onLineCompleted -= OnLineCompleated;
         gameLoopManager.onLastRowReached -= OnLastRowReached;
         _fallTimer.onTimeOut -= gameLoopManager.TetraminoFall;
