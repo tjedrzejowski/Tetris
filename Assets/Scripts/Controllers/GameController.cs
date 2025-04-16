@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
@@ -9,7 +6,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private UIController uIController;
     [SerializeField] private Timer timerPrefab;
     [SerializeField] private int lineThreshold;
-
+    
+    //TODO: gameplay elements - move to gameplay state
     private Timer _fallTimer;
     private int _gameLevel = 0;
     private float _fallTime = 1f;
@@ -17,12 +15,15 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        //TODO: gameplay elements:
         SetFallTimer();
-        uIController.onStartClick += OnStartClick;
         uIController.onRestartClick += OnRestratClick;
         gameLoopManager.onLineCompleted += OnLineCompleated;
         gameLoopManager.onLastRowReached += OnLastRowReached;
         uIController.SetGameloopActiveFlag(false); 
+        
+        // TODO: mainmenu elements:
+        uIController.onStartClick += OnStartClick;
     }
 
     private void OnDisable()
