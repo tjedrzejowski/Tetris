@@ -20,6 +20,21 @@ namespace Core.GameComponentProvider
             }
         }
 
+        public void RegisterComponent(Type type, object component)
+        {
+            if (!type.IsInstanceOfType(component))
+            {
+                throw new ArgumentException(
+                    $"ServiceLocator.Register: Type of service does not match type of service interface",
+                    nameof(component));
+            }
+
+            if (!_components.TryAdd(type, component))
+            {
+                Debug.LogError($"ServiceLocaor.Register: Service of type {type.FullName} already registered");
+            }
+        }
+
         public T GetComponent<T>() where T : class
         {
             var type = typeof(T);
