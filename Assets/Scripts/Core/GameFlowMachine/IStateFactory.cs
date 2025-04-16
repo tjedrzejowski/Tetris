@@ -8,7 +8,7 @@ namespace Core.GameFlowMachine
     {
         void Initialize(IContext context);
         IState GetBootState();
-        IState GetGameplayState(bool forceNew);
-        IState GetMenuState(bool forceNew);
+        IState GetGameplayState(bool forceNew = false);
+        IState GetMenuState(bool forceNew = false);
     }
 }

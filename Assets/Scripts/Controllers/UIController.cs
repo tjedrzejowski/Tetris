@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    public Action onStartClick;
-    public Action onRestartClick;
+    public Action OnStartClick;
+    public Action OnRestartClick;
 
     [SerializeField] private TetraminoSpawner spawner;
     [SerializeField] private TextDisplay levelDisplay;
@@ -65,12 +65,12 @@ public class UIController : MonoBehaviour
     {
         if (_isGameloopActive == false)
         {
-            onStartClick?.Invoke();            
+            OnStartClick?.Invoke();            
             _startButtonTextComponnent.text = restartButtonText;
         }
         else if (_isGameloopActive == true)
         {
-            onRestartClick?.Invoke();
+            OnRestartClick?.Invoke();
             _startButtonTextComponnent.text  = startButtonText;        
         }
     }

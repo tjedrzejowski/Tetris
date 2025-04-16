@@ -1,3 +1,4 @@
+using Core.GameComponentProvider;
 using Core.GameFlowMachine;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace Bootstrap
     /// </summary>
     public class Bootstrap : MonoBehaviour
     {
+        [SerializeField] private ComponentProvider _componentProvider;
         private GameStateMachine _gameStateMachine;
         private GameStateFactory _gameStateFactory;
         
@@ -16,7 +18,7 @@ namespace Bootstrap
         {
             // TODO: Init configs
             // TODO: Init component provider
-            _gameStateFactory = new GameStateFactory();
+            _gameStateFactory = new GameStateFactory(_componentProvider);
             _gameStateMachine = new GameStateMachine(_gameStateFactory);
         }
 

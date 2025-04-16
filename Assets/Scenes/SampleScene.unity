@@ -1653,6 +1653,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1554085238}
+  - component: {fileID: 1554085239}
   m_Layer: 0
   m_Name: Bootstrap
   m_TagString: Untagged
@@ -1675,6 +1676,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1554085239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554085237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c0e0d510e37460e84ee91b3c603075f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentProvider: {fileID: 0}
 --- !u!850595691 &1580320723
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -1893,6 +1907,7 @@ GameObject:
   - component: {fileID: 1769475004}
   - component: {fileID: 1769475003}
   - component: {fileID: 1769475007}
+  - component: {fileID: 1769475008}
   m_Layer: 5
   m_Name: UI Canvas
   m_TagString: Untagged
@@ -2009,6 +2024,19 @@ MonoBehaviour:
   startButton: {fileID: 1784531673}
   startButtonText: Start
   restartButtonText: Restart
+--- !u!114 &1769475008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769475002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007d97b039c645c2b1dff75d9a58d45a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _provider: {fileID: 11400000, guid: 853a0512077b4d77b8e70e808addac7f, type: 2}
 --- !u!1 &1784531671
 GameObject:
   m_ObjectHideFlags: 0

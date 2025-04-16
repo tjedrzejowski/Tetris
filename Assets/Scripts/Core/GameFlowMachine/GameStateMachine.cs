@@ -1,5 +1,3 @@
-using Bootstrap;
-
 namespace Core.GameFlowMachine
 {
     /// <summary>
@@ -9,17 +7,17 @@ namespace Core.GameFlowMachine
     public class GameStateMachine : IContext
     {
         public IState CurrentState { get; private set; }
-        private IStateFactory _gameStateFactory;
+        public IStateFactory StateFactory { get; }
 
         public GameStateMachine(GameStateFactory gameStateFactory)
         {
-            _gameStateFactory = gameStateFactory;
+            StateFactory = gameStateFactory;
         }
         
         public void Init()
         {
-            _gameStateFactory.Initialize(this);
-            CurrentState = _gameStateFactory.GetBootState();
+            StateFactory.Initialize(this);
+            CurrentState = StateFactory.GetBootState();
             CurrentState.Enter();
         }
 

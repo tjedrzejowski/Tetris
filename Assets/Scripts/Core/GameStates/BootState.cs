@@ -1,4 +1,7 @@
+using System;
+using Core.GameComponentProvider;
 using Core.GameFlowMachine;
+using UnityEngine;
 
 namespace Core.GameStates
 {
@@ -7,21 +10,30 @@ namespace Core.GameStates
     /// </summary>
     public class BootState : IState
     {
-        public IContext Context { get; private set; }
+        private readonly IContext _context;
+        private ComponentProvider _componentProvider;
 
-        public BootState(IContext context)
+        public BootState(IContext context, ComponentProvider componentProvider)
         {
-            Context = context;
+            _context = context;
+            _componentProvider = componentProvider;
         }
         
         public void Enter()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("BootState: Enter");
+            TransitToNextState();
         }
 
         public void Exit()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("BootState: Exit");
+        }
+
+        private void TransitToNextState()
+        {
+            Debug.Log($"BootState: TransitToNextState");
+            _context.ChangeState(_context.StateFactory.GetMenuState());            
         }
     }
 }

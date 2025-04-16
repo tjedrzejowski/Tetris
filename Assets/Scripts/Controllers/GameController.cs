@@ -17,19 +17,18 @@ public class GameController : MonoBehaviour
     {
         //TODO: gameplay elements:
         SetFallTimer();
-        uIController.onRestartClick += OnRestratClick;
+        //uIController.OnRestartClick += OnRestratClick;
         gameLoopManager.onLineCompleted += OnLineCompleated;
         gameLoopManager.onLastRowReached += OnLastRowReached;
         uIController.SetGameloopActiveFlag(false); 
         
-        // TODO: mainmenu elements:
-        uIController.onStartClick += OnStartClick;
+        // uIController.onStartClick += OnStartClick;
     }
 
     private void OnDisable()
     {
-        uIController.onStartClick -= OnStartClick;
-        uIController.onRestartClick -= OnRestratClick;
+        // uIController.onStartClick -= OnStartClick;
+        //uIController.OnRestartClick -= OnRestratClick;
         gameLoopManager.onLineCompleted -= OnLineCompleated;
         gameLoopManager.onLastRowReached -= OnLastRowReached;
         _fallTimer.onTimeOut -= gameLoopManager.TetraminoFall;
@@ -42,18 +41,19 @@ public class GameController : MonoBehaviour
         _fallTimer.onTimeOut += gameLoopManager.TetraminoFall;
     }
 
-    private void OnStartClick()
+    public void StartGameplay()
     {
         gameLoopManager.StartGame();
         uIController.SetGameloopActiveFlag(true);
         _fallTimer.SetActive(true);
     }
 
-    private void OnRestratClick()
+    public void RestartGameplay()
     {
         _fallTimer.SetActive(false);
         gameLoopManager.RestartGame();
         uIController.SetGameloopActiveFlag(false);
+        
         // Clear player Points;
         _lineCompleted = 0;
         _gameLevel = 0;
