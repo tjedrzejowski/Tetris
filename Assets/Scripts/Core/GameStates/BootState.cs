@@ -1,5 +1,5 @@
 using System;
-using Core.GameComponentProvider;
+using Core.GameComponentsProvider;
 using Core.GameFlowMachine;
 using UnityEngine;
 
@@ -11,12 +11,12 @@ namespace Core.GameStates
     public class BootState : IState
     {
         private readonly IContext _context;
-        private ComponentProvider _componentProvider;
+        private ComponentsProvider _componentsProvider;
 
-        public BootState(IContext context, ComponentProvider componentProvider)
+        public BootState(IContext context, ComponentsProvider componentsProvider)
         {
             _context = context;
-            _componentProvider = componentProvider;
+            _componentsProvider = componentsProvider;
         }
         
         public void Enter()

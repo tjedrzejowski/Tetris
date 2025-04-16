@@ -1,4 +1,4 @@
-using Core.GameComponentProvider;
+using Core.GameComponentsProvider;
 using Core.GameStates;
 
 namespace Core.GameFlowMachine
@@ -12,11 +12,11 @@ namespace Core.GameFlowMachine
         private IContext _context;
         private IState _menuState;
         private IState _gameplayState;
-        private ComponentProvider _componentProvider;
+        private ComponentsProvider _componentsProvider;
 
-        public GameStateFactory(ComponentProvider componentProvider)
+        public GameStateFactory(ComponentsProvider componentsProvider)
         {
-            _componentProvider = componentProvider;
+            _componentsProvider = componentsProvider;
         }
 
         public void Initialize(IContext context)
@@ -26,14 +26,14 @@ namespace Core.GameFlowMachine
 
         public IState GetBootState()
         {
-            return new BootState(_context, _componentProvider);
+            return new BootState(_context, _componentsProvider);
         }
 
         public IState GetMenuState(bool forceNew = false)
         {
             if (_menuState == null || forceNew)
             {
-                _menuState = new MenuState(_context, _componentProvider);
+                _menuState = new MenuState(_context, _componentsProvider);
             }
 
             return _menuState;
@@ -43,7 +43,7 @@ namespace Core.GameFlowMachine
         {
             if (_gameplayState == null || forceNew)
             {
-                _gameplayState = new GameplayState(_context, _componentProvider);
+                _gameplayState = new GameplayState(_context, _componentsProvider);
             }
 
             return _gameplayState;

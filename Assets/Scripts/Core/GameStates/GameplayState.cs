@@ -1,4 +1,4 @@
-using Core.GameComponentProvider;
+using Core.GameComponentsProvider;
 using Core.GameFlowMachine;
 using UnityEngine;
 
@@ -10,26 +10,26 @@ namespace Core.GameStates
     /// </summary>
     public class GameplayState : IState
     {
-        private readonly ComponentProvider _componentProvider;
+        private readonly ComponentsProvider _componentsProvider;
         private readonly IContext _context;
         
         // temp
         private GameController _gameController;
         private UIController _uiController;
 
-        public GameplayState(IContext context, ComponentProvider componentProvider)
+        public GameplayState(IContext context, ComponentsProvider componentsProvider)
         {
             _context = context;
-            _componentProvider = componentProvider;
+            _componentsProvider = componentsProvider;
         }
         
         public void Enter()
         {
             Debug.Log("GameplayState: Enter");
-            _gameController = _componentProvider.GetComponent<GameController>();
+            _gameController = _componentsProvider.GetComponent<GameController>();
             
             _gameController.StartGameplay();
-            _uiController = _componentProvider.GetComponent<UIController>();
+            _uiController = _componentsProvider.GetComponent<UIController>();
 
             _uiController.OnRestartClick += OnRestartClick;
         }

@@ -1,4 +1,4 @@
-using Core.GameComponentProvider;
+using Core.GameComponentsProvider;
 using Core.GameFlowMachine;
 using UnityEngine;
 
@@ -10,15 +10,15 @@ namespace Bootstrap
     /// </summary>
     public class Bootstrap : MonoBehaviour
     {
-        [SerializeField] private ComponentProvider _componentProvider;
+        [SerializeField] private ComponentsProvider _componentsProvider;
+       
         private GameStateMachine _gameStateMachine;
         private GameStateFactory _gameStateFactory;
         
         private void Awake()
         {
             // TODO: Init configs
-            // TODO: Init component provider
-            _gameStateFactory = new GameStateFactory(_componentProvider);
+            _gameStateFactory = new GameStateFactory(_componentsProvider);
             _gameStateMachine = new GameStateMachine(_gameStateFactory);
         }
 
@@ -31,5 +31,8 @@ namespace Bootstrap
     /*TODO: checklist: 
     - check namespaces
     - class summary
+    - ux: power ups on cooldown 
+    - ux: instant full row erase
+    - tetraminos randomization
     */
 }

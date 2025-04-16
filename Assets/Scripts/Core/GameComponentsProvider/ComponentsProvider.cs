@@ -2,10 +2,14 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Core.GameComponentProvider
+namespace Core.GameComponentsProvider
 {
-    [CreateAssetMenu(fileName = "ComponentProvider", menuName = "Core/ComponentProvider")]
-    public class ComponentProvider : ScriptableObject
+    /// <summary>
+    /// A simple dependency injection container for registering and retrieving game components.
+    /// Acts as a lightweight service locator, storing components by their type and providing global access to them.
+    /// </summary>
+    [CreateAssetMenu(fileName = "ComponentsProvider", menuName = "Core/ComponentsProvider")]
+    public class ComponentsProvider : ScriptableObject
     {
         private readonly Dictionary<Type, object> _components = new();
 
