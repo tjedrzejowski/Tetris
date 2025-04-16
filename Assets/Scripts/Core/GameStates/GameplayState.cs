@@ -42,6 +42,7 @@ namespace Core.GameStates
 
         private void OnRestartClick()
         {
+            _gameController.RestartGameplay();
             _context.ChangeState(_context.StateFactory.GetMenuState());
         }
     }
