@@ -23,7 +23,6 @@ namespace Core.GameStates
         {
             Debug.Log("MenuState: Enter");
             _uiController = _componentsProvider.GetComponent<UIController>();
-            
             _uiController.OnStartClick += OnStartClick;
         }
 
@@ -35,7 +34,7 @@ namespace Core.GameStates
 
         private void OnStartClick()
         {
-            _context.ChangeState(_context.StateFactory.GetGameplayState());
+            _context.ChangeState(_context.StateFactory.GetGameplayState(forceNew: true));
         }
     }
 }

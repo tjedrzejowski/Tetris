@@ -9,10 +9,10 @@ namespace Core.GameFlowMachine
     /// </summary>
     public class GameStateFactory : IStateFactory
     {
+        private readonly ComponentsProvider _componentsProvider;
         private IContext _context;
         private IState _menuState;
         private IState _gameplayState;
-        private ComponentsProvider _componentsProvider;
 
         public GameStateFactory(ComponentsProvider componentsProvider)
         {

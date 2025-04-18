@@ -35,6 +35,7 @@ public class UIController : MonoBehaviour
     {
         _isGameloopActive = isActive;
     }
+   
     public void HandleGameOver()
     {
         SetPopUpActive(gameOverPopUp, true);
