@@ -1,4 +1,5 @@
 ﻿using System;
+using Core;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private string restartButtonText = "Restart";
 
     private Text _startButtonTextComponnent;
+    private GameSessionData _gameSessionData;
     private bool _isGameloopActive;
 
     private void Start()
@@ -31,29 +33,29 @@ public class UIController : MonoBehaviour
         spawner.onNextTetraminoSelect -= HandleTetraminoListUpdate;
     }
 
-    public void SetGameloopActiveFlag(bool isActive)
+    public void SetGameloopActiveFlag(bool isActive, GameSessionData gameSessionData)
     {
         _isGameloopActive = isActive;
+        _gameSessionData = gameSessionData;
+        _gameSessionData.OnDataChanged += OnSessionDataChanged;
     }
-   
+    
     public void HandleGameOver()
     {
+        _gameSessionData.OnDataChanged -= OnSessionDataChanged;
         SetPopUpActive(gameOverPopUp, true);
     }
 
     public void HandleGameReset()
-    {        
+    {
+        _gameSessionData.OnDataChanged -= OnSessionDataChanged;
         SetPopUpActive(gameOverPopUp, false);
     }
 
-    public void HandleLineCompleted(int value)
+    private void OnSessionDataChanged()
     {
-        linesDisplay.UpdateDisplay(value);
-    }
-
-    public void HandleLevelChange(int value)
-    {
-        levelDisplay.UpdateDisplay(value);
+        linesDisplay.UpdateDisplay(_gameSessionData.LinesCompleted);
+        levelDisplay.UpdateDisplay(_gameSessionData.GameLevel);
     }
 
     private void HandleTetraminoListUpdate(Tetramino tetramino)

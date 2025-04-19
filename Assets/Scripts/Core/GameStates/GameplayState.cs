@@ -12,13 +12,11 @@ namespace Core.GameStates
     {
         private readonly ComponentsProvider _componentsProvider;
         private readonly IContext _context;
+        private readonly GameSessionData _sessionData;
         
         private UIController _uiController;
         private GameLoopManager _gameLoopManager;
         private Timer _fallTimer;
-        
-        private int _lineCompleted;
-        private int _gameLevel;
         
         //TODO: config proxy
         private float _fallTime = 1f;
@@ -28,6 +26,7 @@ namespace Core.GameStates
         {
             _context = context;
             _componentsProvider = componentsProvider;
+            _sessionData = new GameSessionData();
         }
         
         public void Enter()
@@ -58,13 +57,14 @@ namespace Core.GameStates
         private void OnRestartClick()
         {
             RestartGameplay();
+            _sessionData.ResetValues();
             _context.ChangeState(_context.StateFactory.GetMenuState());
         }
 
         private void StartGameplay()
         {
             _gameLoopManager.StartGame();
-            _uiController.SetGameloopActiveFlag(true);
+            _uiController.SetGameloopActiveFlag(true, _sessionData);
             _fallTimer.SetActive(true);
         }
 
@@ -72,7 +72,7 @@ namespace Core.GameStates
         {
             _fallTimer.SetActive(false);
             _gameLoopManager.RestartGame();
-            _uiController.SetGameloopActiveFlag(false);
+            _uiController.SetGameloopActiveFlag(false, _sessionData);
             _uiController.HandleGameReset();
         }
         
@@ -96,20 +96,18 @@ namespace Core.GameStates
         
         private void OnLineCompleted()
         {
-            _lineCompleted++;
-            if(_lineCompleted % _lineThreshold == 0)
+            _sessionData.LinesCompleted++;
+            if(_sessionData.LinesCompleted % _lineThreshold == 0)
             {
                 RiseGameLevel();
             }
-            _uiController.HandleLineCompleted(_lineCompleted);
         }
         
         private void RiseGameLevel()
         {
-            _gameLevel++;
+            _sessionData.GameLevel++;
             _fallTime -= 0.15f;
             _fallTimer.CountDownTime = _fallTime;
-            _uiController.HandleLevelChange(_gameLevel);
         }
     }
 }

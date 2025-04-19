@@ -34,6 +34,7 @@ namespace Core.GameStates
 
         private void OnStartClick()
         {
+            //TODO: control from config
             _context.ChangeState(_context.StateFactory.GetGameplayState(forceNew: true));
         }
     }

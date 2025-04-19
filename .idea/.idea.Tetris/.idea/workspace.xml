@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c235ce2-900e-4713-80a3-5aae6305cd94" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Tetris/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tetris/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/GameSessionData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/GameSessionData.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tetris/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tetris/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/GameController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/GameController.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/UIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/UIController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/GameFlowMachine/GameStateFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/GameFlowMachine/GameStateFactory.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/GameStates/GameplayState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/GameStates/GameplayState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/GameStates/MenuState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/GameStates/MenuState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-6000.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-6000.dwlt" afterDir="false" />
@@ -126,6 +123,8 @@
       <updated>1744805440033</updated>
       <workItem from="1744805441564" duration="27200000" />
       <workItem from="1745000574589" duration="5929000" />
+      <workItem from="1745007974833" duration="109000" />
+      <workItem from="1745080294137" duration="4619000" />
     </task>
     <task id="LOCAL-00001" summary="Update project to Unity 6">
       <option name="closed" value="true" />
@@ -183,7 +182,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744837027723</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Remove game controller, move its responsibilities to game state. Force new state on start gameplay.">
+      <option name="closed" value="true" />
+      <created>1745008063824</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1745008063824</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,6 +225,7 @@
     <MESSAGE value="component provider fix monobehaviour componenr registration" />
     <MESSAGE value="fix game over freeze" />
     <MESSAGE value="Add class summaries, refactor provider name and namespace" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add class summaries, refactor provider name and namespace" />
+    <MESSAGE value="Remove game controller, move its responsibilities to game state. Force new state on start gameplay." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove game controller, move its responsibilities to game state. Force new state on start gameplay." />
   </component>
 </project>
