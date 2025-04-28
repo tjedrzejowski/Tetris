@@ -18,7 +18,7 @@ namespace Core.GameComponentsProvider
         public void RegisterComponent<T>(T component)
         {
             var type = typeof(T);
-            if (_components.TryAdd(type, component))
+            if (!_components.TryAdd(type, component))
             {
                 Debug.LogError($"ComponentProvider.Register: Service of type {type.FullName} already registered");
             }
