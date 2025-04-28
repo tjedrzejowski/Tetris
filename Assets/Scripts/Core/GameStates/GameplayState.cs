@@ -1,5 +1,8 @@
+using Core.Configs;
+using Core.DataController;
 using Core.GameComponentsProvider;
 using Core.GameFlowMachine;
+using Core.Models;
 using UnityEngine;
 
 namespace Core.GameStates
@@ -17,10 +20,7 @@ namespace Core.GameStates
         private UIController _uiController;
         private GameLoopManager _gameLoopManager;
         private Timer _fallTimer;
-        
-        //TODO: config proxy
-        private float _fallTime = 1f;
-        private int _lineThreshold = 5;
+        private GameConfig _config;
         
         public GameplayState(IContext context, ComponentsProvider componentsProvider)
         {
@@ -36,6 +36,7 @@ namespace Core.GameStates
             _uiController = _componentsProvider.GetComponent<UIController>();
             _gameLoopManager = _componentsProvider.GetComponent<GameLoopManager>();
             _fallTimer = _componentsProvider.GetComponent<Timer>();
+            _config = _componentsProvider.GetComponent<DataProvider>().GameConfig;
             
             _uiController.OnRestartClick += OnRestartClick;
             _gameLoopManager.onLineCompleted += OnLineCompleted;
@@ -78,7 +79,7 @@ namespace Core.GameStates
         
         private void SetFallTimer()
         {
-            _fallTimer.CountDownTime = _fallTime;
+            _fallTimer.CountDownTime = _config.InitialDropTime;
             _fallTimer.IsContinuous = true;
             _fallTimer.onTimeOut += _gameLoopManager.TetraminoFall;
         }
@@ -97,17 +98,20 @@ namespace Core.GameStates
         private void OnLineCompleted()
         {
             _sessionData.LinesCompleted++;
-            if(_sessionData.LinesCompleted % _lineThreshold == 0)
+            if(_sessionData.LinesCompleted % _config.LinePerLevelThreshold == 0)
             {
                 RiseGameLevel();
             }
         }
-        
+
         private void RiseGameLevel()
         {
             _sessionData.GameLevel++;
-            _fallTime -= 0.15f;
-            _fallTimer.CountDownTime = _fallTime;
+
+            var dropTime = Mathf.Max(_config.MinimalDropTime,
+                _config.InitialDropTime - (_sessionData.GameLevel * _config.DropSpeedFactor));
+
+            _fallTimer.CountDownTime = dropTime;
         }
     }
 }

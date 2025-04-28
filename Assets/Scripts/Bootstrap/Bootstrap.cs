@@ -17,7 +17,6 @@ namespace Bootstrap
         
         private void Awake()
         {
-            // TODO: Init configs
             _gameStateFactory = new GameStateFactory(_componentsProvider);
             _gameStateMachine = new GameStateMachine(_gameStateFactory);
         }
