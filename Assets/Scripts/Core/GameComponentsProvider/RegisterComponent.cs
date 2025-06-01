@@ -15,9 +15,6 @@ namespace Core.GameComponentsProvider
         {
             var type = _component.GetType();
             _provider.RegisterComponent(type, _component);
-
-            foreach (var component in _provider.RegisteredComponents)
-                Debug.Log($"RegisteredComponent: {component.GetType().FullName}");
         }
     }
 }

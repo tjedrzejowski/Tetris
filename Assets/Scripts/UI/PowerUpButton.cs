@@ -1,46 +1,32 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+using Data;
 using UnityEngine;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(ButtonCooldown))]
 public class PowerUpButton : MonoBehaviour
 {
     public Action<int> onActivePowerUp;
 
-    [SerializeField] private int powerUpIndex;
-    [SerializeField] private int powerUpCooldown;
-    [SerializeField] private Timer timerPrefab;
-    private Timer _timer;
-    private bool _isAvailable;
+    [SerializeField] private Image _iconImage;
+    [SerializeField] private ButtonCooldown _cooldown;
 
+    private PowerUpData _config;
 
-    private void Start()
+    public void Init(PowerUpData config)
     {
-        _timer = Instantiate(timerPrefab, this.transform);        
-        _timer.onTimeOut += GrantPowerUp;
-        _timer.CountDownTime = powerUpCooldown;
-        _isAvailable = true;
+        _config = config;
+        _iconImage.sprite = _config.Icon;
     }
 
-    private void OnDisable()
-    {
-        _timer.onTimeOut -= GrantPowerUp;
-    }
     public void ActivatePowerUp()
     {
-        if (!_isAvailable) return;
-        onActivePowerUp?.Invoke(powerUpIndex);
-        SetOnCooldown();
-    }
+        if (_cooldown.OnCooldown)
+        {
+            return;
+        }
 
-    private void SetOnCooldown()
-    {
-        _timer.SetActive(true);
-        _isAvailable = false;
+        onActivePowerUp?.Invoke(_config.Id);
+        _cooldown.PutOnCooldown(_config.Cooldown);
     }
-
-    private void GrantPowerUp()
-    {
-        _isAvailable = true;
-    }
-}   
+}

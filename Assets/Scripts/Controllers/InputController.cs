@@ -1,26 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    [SerializeField] private PlayerInput playerInput;    
+    [SerializeField] private PlayerInput playerInput;
     [SerializeField] private TetraminoController tetraminoController;
     [SerializeField] private TetraminoSpawner spawner;
-    [SerializeField] private List<PowerUpButton> powerUpsButtons;
+    private List<PowerUpButton> _powerUpsButtons = new();
 
     private void Start()
-    {        
+    {
         playerInput.onMoveRightInput += HandleMoveRightInput;
         playerInput.onMoveLeftInput += HandleMoveLeftInput;
         playerInput.onMoveDownInput += HandleMoveDownInput;
         playerInput.onRotateInput += HandleRotateInput;
         playerInput.onPowerUpInput += HandlePowerUpInput;
-        foreach (var button in powerUpsButtons)
-        {
-            button.onActivePowerUp += HandlePowerUpActivation;
-        }
     }
 
     private void OnDisable()
@@ -30,15 +24,21 @@ public class InputController : MonoBehaviour
         playerInput.onMoveDownInput -= HandleMoveDownInput;
         playerInput.onRotateInput -= HandleRotateInput;
         playerInput.onPowerUpInput -= HandlePowerUpInput;
-        foreach (var button in powerUpsButtons)
+        foreach (var button in _powerUpsButtons)
         {
             button.onActivePowerUp -= HandlePowerUpActivation;
         }
     }
 
+    public void RegisterPowerUpButton(PowerUpButton button)
+    {
+        _powerUpsButtons.Add(button);
+        button.onActivePowerUp += HandlePowerUpActivation;
+    }
+
     private void HandlePowerUpInput(int buttonIndex)
     {
-        powerUpsButtons[buttonIndex].ActivatePowerUp();
+        _powerUpsButtons[buttonIndex].ActivatePowerUp();
     }
 
     private void HandlePowerUpActivation(int powerUpIndex)

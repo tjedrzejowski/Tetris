@@ -14,6 +14,8 @@ public class ButtonCooldown : MonoBehaviour
     [SerializeField] private Image _fillImage;
     [SerializeField] private TextMeshProUGUI _timerDisplay;
 
+    public bool OnCooldown => _onCooldown;
+
     private float _cooldownTime;
     private float _timeLeft;
     private bool _onCooldown;

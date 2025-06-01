@@ -12,7 +12,7 @@ namespace Core.GameStates
     {
         private readonly ComponentsProvider _componentsProvider;
         private readonly IContext _context;
-        
+
         // temp
         private GameController _gameController;
         private UIController _uiController;
@@ -22,15 +22,16 @@ namespace Core.GameStates
             _context = context;
             _componentsProvider = componentsProvider;
         }
-        
+
         public void Enter()
         {
             Debug.Log("GameplayState: Enter");
             _gameController = _componentsProvider.GetComponent<GameController>();
-            
+
             _gameController.StartGameplay();
             _uiController = _componentsProvider.GetComponent<UIController>();
 
+            _uiController.Init(_componentsProvider);
             _uiController.OnRestartClick += OnRestartClick;
         }
 
